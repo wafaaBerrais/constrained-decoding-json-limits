@@ -56,7 +56,7 @@ numeric_depth > 1.5 AND object_additional_properties_case_no_extra_properties > 
 
 **Interpretation en francais**
 
-Dans les schemas ou les contraintes numeriques du schema apparaissent a une profondeur au moins 2, et pour une instance ou elle n'a pas de proprietes extra par rapport au schema, la valeur numerique de l'instance n'est pas dans un cas inside_range, un cas de borne numerique est applicable et la valeur numerique de l'instance n'est pas exactement sur la borne minimale, alors pour `outlines` le modele predit **UNDER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 97 cas ; parmi les cas couverts, la precision est 0.907.
+Dans les schemas ou les contraintes numeriques du schema apparaissent a une profondeur au moins 2, et pour une instance ou elle n'a pas de proprietes extra par rapport au schema, la valeur numerique de l'instance n'est pas dans un cas inside_range, un cas de borne numerique est applicable et la valeur numerique de l'instance n'est pas exactement sur la borne minimale, alors pour `outlines` le modele predit **UNDER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 97 cas ; parmi les cas couverts, la precision est 0.907.
 
 ## Arbre Textuel
 

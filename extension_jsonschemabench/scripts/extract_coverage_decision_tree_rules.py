@@ -617,9 +617,9 @@ def interpretation_text(framework: str, target: str, rule: dict[str, Any]) -> st
         else "le modele predit **UNDER**"
     )
     meaning = (
-        "cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee"
+        "cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee"
         if target == "over"
-        else "cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee"
+        else "cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee"
     )
     support = int(rule.get("test_support", 0))
     precision = float(rule.get("test_precision", 0.0))

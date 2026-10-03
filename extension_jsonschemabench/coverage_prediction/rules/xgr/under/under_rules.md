@@ -54,7 +54,7 @@ any_visited_type_mismatch <= 0.5 AND object_additional_properties_case_no_extra_
 
 **Interpretation en francais**
 
-Dans les schemas ou ils ont au moins 2 branches `allOf` au total, et pour une instance ou `any_visited_type_mismatch` est au plus 0, elle a au moins une propriete extra ou un cas different et le ratio moyen de branches `allOf` satisfaites est inferieure ou egale a 0.708333, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 9 cas ; parmi les cas couverts, la precision est 0.889.
+Dans les schemas ou ils ont au moins 2 branches `allOf` au total, et pour une instance ou `any_visited_type_mismatch` est au plus 0, elle a au moins une propriete extra ou un cas different et le ratio moyen de branches `allOf` satisfaites est inferieure ou egale a 0.708333, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 9 cas ; parmi les cas couverts, la precision est 0.889.
 
 ### Regle 2
 
@@ -85,7 +85,7 @@ any_visited_type_mismatch > 0.5 AND combinator_have_required_count > 0.5 AND obj
 
 **Interpretation en francais**
 
-Dans les schemas ou au moins 1 combinators ont au moins une branche avec `required`, ils contiennent au moins 2 contextes objet avec un champ `required` absent de `properties`, ils contiennent au plus 3 combinators homogenes en type declare et un noeud du schema combine au plus 2 mots-cles objet complexes, et pour une instance ou `any_visited_type_mismatch` est au moins 1, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 4 cas ; parmi les cas couverts, la precision est 0.750.
+Dans les schemas ou au moins 1 combinators ont au moins une branche avec `required`, ils contiennent au moins 2 contextes objet avec un champ `required` absent de `properties`, ils contiennent au plus 3 combinators homogenes en type declare et un noeud du schema combine au plus 2 mots-cles objet complexes, et pour une instance ou `any_visited_type_mismatch` est au moins 1, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 4 cas ; parmi les cas couverts, la precision est 0.750.
 
 ### Regle 3
 
@@ -114,7 +114,7 @@ any_visited_type_mismatch <= 0.5 AND object_additional_properties_case_no_extra_
 
 **Interpretation en francais**
 
-Dans les schemas ou ils ont au moins 2 branches `allOf` au total, et pour une instance ou `any_visited_type_mismatch` est au plus 0, elle a au moins une propriete extra ou un cas different et le ratio moyen de branches `allOf` satisfaites est superieure a 0.708333, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 3 cas ; parmi les cas couverts, la precision est 0.667.
+Dans les schemas ou ils ont au moins 2 branches `allOf` au total, et pour une instance ou `any_visited_type_mismatch` est au plus 0, elle a au moins une propriete extra ou un cas different et le ratio moyen de branches `allOf` satisfaites est superieure a 0.708333, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 3 cas ; parmi les cas couverts, la precision est 0.667.
 
 ### Regle 4
 
@@ -143,7 +143,7 @@ any_visited_type_mismatch > 0.5 AND combinator_have_required_count <= 0.5 AND ad
 
 **Interpretation en francais**
 
-Dans les schemas ou au plus 0 combinators ont au moins une branche avec `required`, ils utilisent principalement `additionalProperties: true` et un de leurs objets declare au plus 1 champs `required`, et pour une instance ou `any_visited_type_mismatch` est au moins 1, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 14 cas ; parmi les cas couverts, la precision est 0.500.
+Dans les schemas ou au plus 0 combinators ont au moins une branche avec `required`, ils utilisent principalement `additionalProperties: true` et un de leurs objets declare au plus 1 champs `required`, et pour une instance ou `any_visited_type_mismatch` est au moins 1, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 14 cas ; parmi les cas couverts, la precision est 0.500.
 
 ### Regle 5
 
@@ -174,7 +174,7 @@ any_visited_type_mismatch <= 0.5 AND object_additional_properties_case_no_extra_
 
 **Interpretation en francais**
 
-Dans les schemas ou `object_has_required_outside_properties` est au moins 1, et pour une instance ou `any_visited_type_mismatch` est au plus 0, elle n'a pas de proprietes extra par rapport au schema et elle contient au moins 1 violations de `pattern` string, avec aussi `string_pattern_avg_length` est superieure a 14.4167, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 8 cas ; parmi les cas couverts, la precision est 0.500.
+Dans les schemas ou `object_has_required_outside_properties` est au moins 1, et pour une instance ou `any_visited_type_mismatch` est au plus 0, elle n'a pas de proprietes extra par rapport au schema et elle contient au moins 1 violations de `pattern` string, avec aussi `string_pattern_avg_length` est superieure a 14.4167, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 8 cas ; parmi les cas couverts, la precision est 0.500.
 
 ### Regle 6
 
@@ -205,7 +205,7 @@ any_visited_type_mismatch <= 0.5 AND object_additional_properties_case_no_extra_
 
 **Interpretation en francais**
 
-Pour une instance ou `any_visited_type_mismatch` est au plus 0, elle n'a pas de proprietes extra par rapport au schema et elle contient au plus 0 violations de `pattern` string, avec aussi `string_length_violation_count` est au plus 0 et `enum_value_mismatch_count` est au plus 0, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 618 cas ; parmi les cas couverts, la precision est 0.450.
+Pour une instance ou `any_visited_type_mismatch` est au plus 0, elle n'a pas de proprietes extra par rapport au schema et elle contient au plus 0 violations de `pattern` string, avec aussi `string_length_violation_count` est au plus 0 et `enum_value_mismatch_count` est au plus 0, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 618 cas ; parmi les cas couverts, la precision est 0.450.
 
 ### Regle 7
 
@@ -234,7 +234,7 @@ any_visited_type_mismatch > 0.5 AND combinator_have_required_count > 0.5 AND obj
 
 **Interpretation en francais**
 
-Dans les schemas ou au moins 1 combinators ont au moins une branche avec `required`, ils contiennent au moins 2 contextes objet avec un champ `required` absent de `properties` et ils contiennent au moins 4 combinators homogenes en type declare, et pour une instance ou `any_visited_type_mismatch` est au moins 1, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 9 cas ; parmi les cas couverts, la precision est 0.111.
+Dans les schemas ou au moins 1 combinators ont au moins une branche avec `required`, ils contiennent au moins 2 contextes objet avec un champ `required` absent de `properties` et ils contiennent au moins 4 combinators homogenes en type declare, et pour une instance ou `any_visited_type_mismatch` est au moins 1, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 9 cas ; parmi les cas couverts, la precision est 0.111.
 
 ### Regle 8
 
@@ -263,7 +263,7 @@ any_visited_type_mismatch > 0.5 AND combinator_have_required_count > 0.5 AND obj
 
 **Interpretation en francais**
 
-Dans les schemas ou au moins 1 combinators ont au moins une branche avec `required` et ils contiennent au plus 1 contextes objet avec un champ `required` absent de `properties`, et pour une instance ou `any_visited_type_mismatch` est au moins 1, avec aussi `additionalProperties_mode_mixed` est actif, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 9 cas ; parmi les cas couverts, la precision est 0.000.
+Dans les schemas ou au moins 1 combinators ont au moins une branche avec `required` et ils contiennent au plus 1 contextes objet avec un champ `required` absent de `properties`, et pour une instance ou `any_visited_type_mismatch` est au moins 1, avec aussi `additionalProperties_mode_mixed` est actif, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 9 cas ; parmi les cas couverts, la precision est 0.000.
 
 ### Regle 9
 
@@ -294,7 +294,7 @@ any_visited_type_mismatch <= 0.5 AND object_additional_properties_case_no_extra_
 
 **Interpretation en francais**
 
-Dans les schemas ou ils ont au plus 1 branches `allOf` au total, ils utilisent principalement `additionalProperties: true` et un de leurs objets declare au plus 0 champs `required`, et pour une instance ou `any_visited_type_mismatch` est au plus 0 et elle a au moins une propriete extra ou un cas different, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 0 cas ; parmi les cas couverts, la precision est 0.000.
+Dans les schemas ou ils ont au plus 1 branches `allOf` au total, ils utilisent principalement `additionalProperties: true` et un de leurs objets declare au plus 0 champs `required`, et pour une instance ou `any_visited_type_mismatch` est au plus 0 et elle a au moins une propriete extra ou un cas different, alors pour `xgr` le modele predit **UNDER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 0 cas ; parmi les cas couverts, la precision est 0.000.
 
 ## Arbre Textuel
 

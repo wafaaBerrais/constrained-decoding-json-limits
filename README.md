@@ -1,8 +1,8 @@
-# Predicting Constraint Violations in LLM Constrained Decoding
+# Constrained Decoding for JSON Generation: Limits of Existing Solutions
 
-**When do JSON-constrained decoding engines get JSON Schema wrong, and can we predict it?**
+**When do JSON-constrained decoding engines get JSON Schema wrong, can we predict it, and does it matter when a real LLM generates?**
 
-LLMs are increasingly asked to return structured JSON that must follow a given [JSON Schema](https://json-schema.org/). *Constrained decoding* frameworks enforce this by masking, at each step, the tokens that would break the schema. JSON Schema is very expressive, though, and these engines don't always get it right. This project measures, explains and **predicts** their conformance errors, test by test, for three widely used frameworks: **Guidance / LLGuidance**, **Outlines** and **XGrammar**.
+LLMs are increasingly asked to return structured JSON that must follow a given [JSON Schema](https://json-schema.org/). *Constrained decoding* frameworks enforce this by masking, at each step, the tokens that would break the schema. JSON Schema is very expressive, though, and these engines don't always get it right. This project measures, explains and **predicts** their conformance errors, test by test, for three widely used frameworks: **Guidance / LLGuidance**, **Outlines** and **XGrammar**. A follow-up pilot then checks the extracted rules against **real LLM generation**.
 
 > 🎓 M1 research internship at **[LIP6](https://www.lip6.fr/)** (Sorbonne Université, Faculté des Sciences et Ingénierie), 15 June – 31 July 2026
 > Supervisor: **Mohammed Amine Baazizi**
@@ -31,6 +31,7 @@ A single global accuracy score hides *which* constraints fail and *in which cont
 4. **Predictive models.** One classifier per *framework × error type*, comparing Logistic Regression, Random Forest, HistGradientBoosting and LightGBM. Train, validation and test splits are **grouped by `schema_id`**, so every test of a given schema lands in exactly one split. Features are then filtered by importance and domain knowledge, and the models are retrained on the reduced feature lists.
 5. **Interpretable rules.** Shallow decision trees turn the risky configurations into human-readable rules.
 6. **Out-of-distribution evaluation.** The GitHub-trained models are applied **without retraining** to Kubernetes schemas.
+7. **Validation with a real LLM (follow-up pilot).** A small local model generates JSON under XGrammar, to check that the cases flagged by the rules are the ones where generation actually goes wrong.
 
 ## Results
 
@@ -73,6 +74,39 @@ A 5-fold cross-validation grouped by schema, run with earlier feature lists, giv
 - **XGrammar and Outlines OVER** keep a very high precision (0.99–1.00), but their recall drops to 0.23–0.37. The Kubernetes schemas trigger error patterns that are rare in the GitHub data, which is a clear case of distribution shift.
 - UNDER couldn't be evaluated on Kubernetes, because neither XGrammar nor Outlines produced any UNDER error there.
 
+### Do the rules hold when a real LLM generates?
+
+Everything above replays *known* instances through the token mask: no model generates anything. As a follow-up, a small pilot puts a real LLM in the loop (details in [`extension_jsonschemabench/llm_validation/`](extension_jsonschemabench/llm_validation/)).
+
+**Goal.** Check that a rule saying "risk of error" corresponds to a real failure when an LLM writes the JSON, and try a rule-guided fix.
+
+**Method.** `Qwen2.5-0.5B-Instruct` runs locally under **XGrammar** constrained decoding on a *copy task*: the model must return a known instance as JSON. The rules are not shown to the model; they act as a router that decides, before generation, whether a case is at risk.
+
+- **OVER** (valid instance, Kubernetes): it is an error if the model cannot reproduce the instance, because the grammar blocked a valid output.
+- **UNDER** (invalid instance, held-out GitHub schemas): it is an error if the output fails `jsonschema` validation, because the grammar let an invalid output through.
+- For each error type, 15 cases flagged by a rule are compared with 15 unflagged controls.
+
+<p align="center">
+  <img src="docs/figures/llm_validation_flagged_vs_control.svg" width="640" alt="Error rate in real generation for rule-flagged cases and controls"/>
+  <br/><em>Share of cases where generation goes wrong, for cases flagged by a rule and for unflagged controls.</em>
+</p>
+
+**Results.**
+
+- **The rules carry over to real generation.** Flagged cases fail far more often than controls: 15/15 vs 4/15 for OVER, 8/15 vs 2/15 for UNDER. The control errors are mostly copy mistakes of the small model, not framework errors.
+- **Rule-guided mitigation is limited with a 0.5B model.** For OVER risk, generating without the grammar gives schema-valid output in 15/15 cases, but only 1 reproduces the instance exactly (13/15 when ignoring whitespace in keys). For UNDER risk, adding the schema to the prompt rarely makes the model correct the invalid value; a `jsonschema` check still catches every remaining invalid output.
+
+**Example (OVER).** The schema does not forbid extra properties, so this instance is valid:
+
+```text
+Asked for            {"pdID": "disk-12345", "fsType ": "ext4"}     <- note the key "fsType " with a trailing space
+Rule fired           the instance has an extra property that the schema allows
+XGrammar output      {"pdID": "disk-12345"}                        <- the extra key cannot be generated
+Without the grammar  {"pdID": "disk-12345", "fsType": "ext4"}      <- valid, but the model "fixed" the key
+```
+
+This is a pilot (60 cases, one small model, one framework), meant to check the approach rather than to give statistically solid numbers.
+
 ## Repository structure
 
 ```text
@@ -90,6 +124,7 @@ A 5-fold cross-validation grouped by schema, run with earlier feature lists, giv
     ├── visualisation_etudes_frameworks.ipynb          # main results notebook (executed)
     ├── visualisation_etudes_frameworks_grouped.ipynb  # EDA plots per framework (executed)
     ├── scripts/                       # runners, profiling, feature extraction, modeling, rules
+    ├── llm_validation/                # follow-up pilot: rules vs real LLM generation (XGrammar)
     ├── results/per_dataset_runs/      # per framework × dataset summaries and plots
     └── coverage_prediction/
         ├── modeles_predictifs/        # final models, modeling tables, metrics, feature importance

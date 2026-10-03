@@ -55,7 +55,7 @@ object_additional_properties_case_extra_allowed_or_absent <= 0.5 AND patternProp
 
 **Interpretation en francais**
 
-Dans les schemas ou ils declarent au moins 1 patterns dans `patternProperties`, et pour une instance ou l'instance n'est pas dans le cas extra autorise/absent, elle contient au moins 1 cles qui matchent `patternProperties` et elle contient au moins 3 cles qui matchent `patternProperties`, avec aussi `additionalProperties_mode_mixed` est absent, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 27 cas ; parmi les cas couverts, la precision est 1.000.
+Dans les schemas ou ils declarent au moins 1 patterns dans `patternProperties`, et pour une instance ou l'instance n'est pas dans le cas extra autorise/absent, elle contient au moins 1 cles qui matchent `patternProperties` et elle contient au moins 3 cles qui matchent `patternProperties`, avec aussi `additionalProperties_mode_mixed` est absent, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 27 cas ; parmi les cas couverts, la precision est 1.000.
 
 ### Regle 2
 
@@ -85,7 +85,7 @@ object_additional_properties_case_extra_allowed_or_absent <= 0.5 AND patternProp
 
 **Interpretation en francais**
 
-Dans les schemas ou ils declarent au moins 1 patterns dans `patternProperties`, et pour une instance ou l'instance n'est pas dans le cas extra autorise/absent, elle contient au moins 1 cles qui matchent `patternProperties` et elle contient au plus 2 cles qui matchent `patternProperties`, avec aussi `additionalProperties_mode_mixed` est absent, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 14 cas ; parmi les cas couverts, la precision est 1.000.
+Dans les schemas ou ils declarent au moins 1 patterns dans `patternProperties`, et pour une instance ou l'instance n'est pas dans le cas extra autorise/absent, elle contient au moins 1 cles qui matchent `patternProperties` et elle contient au plus 2 cles qui matchent `patternProperties`, avec aussi `additionalProperties_mode_mixed` est absent, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 14 cas ; parmi les cas couverts, la precision est 1.000.
 
 ### Regle 3
 
@@ -114,7 +114,7 @@ object_additional_properties_case_extra_allowed_or_absent <= 0.5 AND patternProp
 
 **Interpretation en francais**
 
-Dans les schemas ou ils declarent au moins 1 patterns dans `patternProperties`, et pour une instance ou l'instance n'est pas dans le cas extra autorise/absent et elle contient au moins 1 cles qui matchent `patternProperties`, avec aussi `additionalProperties_mode_mixed` est actif, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 2 cas ; parmi les cas couverts, la precision est 1.000.
+Dans les schemas ou ils declarent au moins 1 patterns dans `patternProperties`, et pour une instance ou l'instance n'est pas dans le cas extra autorise/absent et elle contient au moins 1 cles qui matchent `patternProperties`, avec aussi `additionalProperties_mode_mixed` est actif, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 2 cas ; parmi les cas couverts, la precision est 1.000.
 
 ### Regle 4
 
@@ -145,7 +145,7 @@ object_additional_properties_case_extra_allowed_or_absent > 0.5 AND additionalPr
 
 **Interpretation en francais**
 
-Dans les schemas ou ils n'utilisent pas principalement `additionalProperties: true`, et pour une instance ou elle a des proprietes extra autorisees ou sans restriction claire, avec aussi `allOf_satisfied_branch_count` est au plus 1, `additionalProperties_mode_mixed` est absent et `object_missing_required_count` est au plus 0, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 79 cas ; parmi les cas couverts, la precision est 0.975.
+Dans les schemas ou ils n'utilisent pas principalement `additionalProperties: true`, et pour une instance ou elle a des proprietes extra autorisees ou sans restriction claire, avec aussi `allOf_satisfied_branch_count` est au plus 1, `additionalProperties_mode_mixed` est absent et `object_missing_required_count` est au plus 0, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 79 cas ; parmi les cas couverts, la precision est 0.975.
 
 ### Regle 5
 
@@ -176,7 +176,7 @@ object_additional_properties_case_extra_allowed_or_absent > 0.5 AND additionalPr
 
 **Interpretation en francais**
 
-Dans les schemas ou ils n'utilisent pas principalement `additionalProperties: true`, et pour une instance ou elle a des proprietes extra autorisees ou sans restriction claire, avec aussi `allOf_satisfied_branch_count` est au plus 1, `additionalProperties_mode_mixed` est absent et `object_missing_required_count` est au moins 1, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 5 cas ; parmi les cas couverts, la precision est 0.800.
+Dans les schemas ou ils n'utilisent pas principalement `additionalProperties: true`, et pour une instance ou elle a des proprietes extra autorisees ou sans restriction claire, avec aussi `allOf_satisfied_branch_count` est au plus 1, `additionalProperties_mode_mixed` est absent et `object_missing_required_count` est au moins 1, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 5 cas ; parmi les cas couverts, la precision est 0.800.
 
 ### Regle 6
 
@@ -205,7 +205,7 @@ object_additional_properties_case_extra_allowed_or_absent <= 0.5 AND patternProp
 
 **Interpretation en francais**
 
-Dans les schemas ou ils declarent au moins 1 patterns dans `patternProperties`, et pour une instance ou l'instance n'est pas dans le cas extra autorise/absent, elle contient au plus 0 cles qui matchent `patternProperties` et elle contient au plus 6 proprietes au premier niveau, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 6 cas ; parmi les cas couverts, la precision est 0.667.
+Dans les schemas ou ils declarent au moins 1 patterns dans `patternProperties`, et pour une instance ou l'instance n'est pas dans le cas extra autorise/absent, elle contient au plus 0 cles qui matchent `patternProperties` et elle contient au plus 6 proprietes au premier niveau, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 6 cas ; parmi les cas couverts, la precision est 0.667.
 
 ### Regle 7
 
@@ -236,7 +236,7 @@ object_additional_properties_case_extra_allowed_or_absent <= 0.5 AND patternProp
 
 **Interpretation en francais**
 
-Dans les schemas ou ils declarent au plus 0 patterns dans `patternProperties`, ils contiennent au plus 7 contextes objet et au moins une regex string contient une alternation de type `a|b`, et pour une instance ou l'instance n'est pas dans le cas extra autorise/absent, avec aussi `schema_boolean_schema_count` est au plus 3, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework accepte une instance qui devrait etre rejetee. Dans le test, cette regle couvre 13 cas ; parmi les cas couverts, la precision est 0.231.
+Dans les schemas ou ils declarent au plus 0 patterns dans `patternProperties`, ils contiennent au plus 7 contextes objet et au moins une regex string contient une alternation de type `a|b`, et pour une instance ou l'instance n'est pas dans le cas extra autorise/absent, avec aussi `schema_boolean_schema_count` est au plus 3, alors pour `xgr` le modele predit **OVER**. Donc cela veut dire : risque que le framework rejette une instance qui devrait etre acceptee. Dans le test, cette regle couvre 13 cas ; parmi les cas couverts, la precision est 0.231.
 
 ## Arbre Textuel
 
