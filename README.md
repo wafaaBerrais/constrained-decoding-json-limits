@@ -6,6 +6,7 @@ LLMs are increasingly asked to return structured JSON that must follow a given [
 
 > 🎓 M1 research internship at **[LIP6](https://www.lip6.fr/)** (Sorbonne Université, Faculté des Sciences et Ingénierie), 15 June – 31 July 2026
 > Supervisor: **Mohammed Amine Baazizi**
+> 📄 Internship report (French): [`docs/internship_report_fr.pdf`](docs/internship_report_fr.pdf) · Slides: [`docs/internship_presentation.pptx`](docs/internship_presentation.pptx)
 > Built on top of the [JSONSchemaBench](https://github.com/guidance-ai/jsonschemabench) benchmark ([Geng et al., 2025](https://arxiv.org/abs/2501.10868))
 
 ---
@@ -118,6 +119,7 @@ This is a pilot (60 cases, one small model, one framework), meant to check the a
 │   └── outlines_engine_offline_vocabulary.patch
 ├── docs/
 │   ├── figures/                       # figures used in this README
+│   ├── internship_report_fr.pdf       # internship report (French)
 │   └── internship_presentation.pptx   # internship defense slides
 └── extension_jsonschemabench/         # all the internship work
     ├── README.md                      # detailed documentation (French)
